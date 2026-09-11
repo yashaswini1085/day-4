@@ -1,0 +1,60 @@
+body{
+    background-color: white;
+}
+*{
+    font-family: Angsana New (Headings CS) ;
+
+}
+.title{
+    text-align: center;
+}
+h1{
+    color: black;
+}
+h2{
+    color: brown;
+    background-color: pink;
+    padding: 10px;
+}
+.card{
+    width: 200px;
+    background-color: rgb(201, 122, 135);
+    padding: 15px;
+    border-radius: 15px;
+    transition: transform .5s, border-shadow .5s;
+
+}
+img{
+    width: 100%;
+    border-radius: 30px;
+}
+.content h3{
+    color: black;
+}
+.social-icon{
+    display: flex;
+    justify-content: space-evenly;
+}
+.icon{
+    height: 50px;
+    width: 50px;
+    background-color: green;
+    font-size: 2em;
+    text-align: center;
+    border-radius: 50%;
+    transition: transform .4s;
+}
+.icon:hover{
+    transform: scale(1.2);
+    box-shadow: 0 0 15px grey;
+}
+.card:hover{
+    transform: scale(1.1);
+    box-shadow: o o 15px gray;
+}
+.container{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
