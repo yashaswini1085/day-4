@@ -1,60 +1,182 @@
-body{
-    background-color: white;
+* {
+    box-sizing: border-box;
+    font-family: Georgia, "Times New Roman", serif;
 }
-*{
-    font-family: Angsana New (Headings CS) ;
 
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 48px 24px;
+    overflow-x: hidden;
+    color: #171717;
+    background: linear-gradient(135deg, #ffffff, #d8d8d8, #8d8d8d, #f5f5f5);
+    background-size: 350% 350%;
+    animation: backgroundShift 16s ease infinite;
 }
-.title{
+
+body::before,
+body::after {
+    position: fixed;
+    z-index: -1;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    content: "";
+    filter: blur(8px);
+    opacity: .45;
+}
+
+body::before {
+    top: 8%;
+    left: -90px;
+    background: #ffffff;
+    animation: drift 10s ease-in-out infinite alternate;
+}
+
+body::after {
+    right: -90px;
+    bottom: 5%;
+    background: #222222;
+    animation: drift 12s ease-in-out infinite alternate-reverse;
+}
+
+.title {
+    max-width: 900px;
+    margin: 0 auto 34px;
     text-align: center;
+    animation: reveal .8s ease both;
 }
-h1{
-    color: black;
-}
-h2{
-    color: brown;
-    background-color: pink;
-    padding: 10px;
-}
-.card{
-    width: 200px;
-    background-color: rgb(201, 122, 135);
-    padding: 15px;
-    border-radius: 15px;
-    transition: transform .5s, border-shadow .5s;
 
+h1 {
+    margin: 0;
+    color: #111111;
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    letter-spacing: 5px;
+    text-transform: uppercase;
 }
-img{
+
+h2 {
+    display: inline-block;
+    margin: 12px 0 16px;
+    padding: 10px 22px;
+    color: #ffffff;
+    background-color: #171717;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    animation: softPulse 3s ease-in-out infinite;
+}
+
+.title p {
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.card {
+    width: min(100%, 230px);
+    padding: 15px;
+    background-color: rgba(255, 255, 255, .88);
+    border: 1px solid #191919;
+    border-radius: 4px;
+    box-shadow: 8px 8px 0 rgba(20, 20, 20, .85);
+    backdrop-filter: blur(8px);
+    transition: transform .35s ease, box-shadow .35s ease;
+    animation: cardRise .7s ease both;
+}
+
+.card:nth-child(2) {
+    animation-delay: .15s;
+}
+
+.card:nth-child(3) {
+    animation-delay: .3s;
+}
+
+img {
     width: 100%;
     border-radius: 30px;
 }
-.content h3{
-    color: black;
+
+.content h3 {
+    color: #111111;
+    letter-spacing: .5px;
 }
-.social-icon{
+
+.social-icon {
     display: flex;
     justify-content: space-evenly;
 }
-.icon{
-    height: 50px;
+
+.icon {
     width: 50px;
-    background-color: green;
+    height: 50px;
+    overflow: hidden;
+    background-color: #171717;
     font-size: 2em;
     text-align: center;
+    border: 2px solid #171717;
     border-radius: 50%;
-    transition: transform .4s;
+    transition: transform .4s ease, background-color .4s ease;
 }
-.icon:hover{
-    transform: scale(1.2);
-    box-shadow: 0 0 15px grey;
+
+.icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: grayscale(1) contrast(1.15);
 }
-.card:hover{
-    transform: scale(1.1);
-    box-shadow: o o 15px gray;
+
+.icon:hover {
+    transform: translateY(-6px) rotate(8deg) scale(1.12);
+    background-color: #ffffff;
+    box-shadow: 0 0 15px rgba(20, 20, 20, .35);
 }
-.container{
+
+.card:hover {
+    transform: translateY(-12px) rotate(1deg);
+    box-shadow: 14px 14px 0 rgba(20, 20, 20, .85);
+}
+
+.container {
     display: flex;
-    gap: 20px;
+    gap: 24px;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
+}
+
+@keyframes backgroundShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes drift {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(45px, -30px) scale(1.15); }
+}
+
+@keyframes reveal {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cardRise {
+    from { opacity: 0; transform: translateY(35px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes softPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
 }
